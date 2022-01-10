@@ -1,0 +1,31 @@
+header{
+height: 60px;
+background-color: var(--color-primary);
+display: flex;
+align-items: center;
+
+}
+
+.bsgames-nav-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.bsgames-nav-content h1{
+margin: 0%;
+font-weight: 700;
+font-size: 24px;
+}
+
+.bsgames-contact-container{
+    display: flex;
+    align-items: center;
+}
+
+.bsgames-contact-link{
+    margin: 0 0 0 10px;
+    font-size: large;
+    align-items: center;
+}
