@@ -18,7 +18,7 @@ function GameCard( { game } : Props) {
             <img className="bsgames-movie-card-image" src={game.image} alt={game.title} />
             <div className="bsgames-card-bottom-container">
                 <h3>{game.title}</h3>
-                <GameScore />
+                <GameScore count={game.count} score={game.score}/>
 
 
                 <Link to={`/form/${game.id}`}>

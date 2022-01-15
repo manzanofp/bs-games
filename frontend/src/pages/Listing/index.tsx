@@ -7,7 +7,7 @@ import { BASE_URL } from "utils/request";
 
 function Listing() {
 
-    const [pageNumber, setPageNumber] = useState(0);
+    const [pageNumber] = useState(0);
 
     const [page, setPage] = useState<GamePage>({
         content: [],
@@ -24,7 +24,7 @@ function Listing() {
 
     useEffect(() => {
 
-        axios.get(`${BASE_URL}/games?size=12&page=${pageNumber}&sort=title`).then(response => {
+        axios.get(`${BASE_URL}/games?size=12&page=${pageNumber}&sort=id`).then(response => {
             const data = response.data as GamePage;
             setPage(data);
 
