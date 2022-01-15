@@ -1,18 +1,27 @@
 import axios from "axios";
 import GameCard from "components/GameCard";
 import Pagination from "components/Navbar/Pagination";
+import { useEffect, useState } from "react";
+import { GamePage } from "types/game";
 import { BASE_URL } from "utils/request";
 
 function Listing() {
 
-// FORMA ERRADA DE SE FAZER A REQUISIÇÃO
-axios.get(`${BASE_URL}/games/2`).then(response =>{
-console.log(response.data);
-});
+const[pageNumber, setPageNumber] = useState(0);
 
+useEffect(() => {
+
+    axios.get(`${BASE_URL}/games?size=12&page=1`).then(response =>{
+        const data = response.data as GamePage;
+        console.log(data);
+         setPageNumber(data.number);
+    });
+
+},[]);
 
     return (
         <>
+        <p>{pageNumber}</p>
             <Pagination />
 
             <div className="container">
