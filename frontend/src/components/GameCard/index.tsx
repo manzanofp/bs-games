@@ -1,15 +1,15 @@
 import GameScore from "components/GameScore";
 import { Link } from "react-router-dom";
+import { Game } from "types/game";
 
-function GameCard() {
 
-    const game = {
-        id: 1,
-        image: "https://images2.alphacoders.com/778/thumb-1920-778340.jpg",
-        title: "God of War",
-        count: 2,
-        score: 4.5
-    };
+type Props ={
+  game: Game;
+}
+
+function GameCard( { game } : Props) {
+
+    
 
 
 

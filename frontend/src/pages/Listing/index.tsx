@@ -7,40 +7,44 @@ import { BASE_URL } from "utils/request";
 
 function Listing() {
 
-const[pageNumber, setPageNumber] = useState(0);
+    const [pageNumber, setPageNumber] = useState(0);
 
-useEffect(() => {
-
-    axios.get(`${BASE_URL}/games?size=12&page=1`).then(response =>{
-        const data = response.data as GamePage;
-        console.log(data);
-         setPageNumber(data.number);
+    const [page, setPage] = useState<GamePage>({
+        content: [],
+        last: true,
+        totalPages: 0,
+        totalElements: 0,
+        size: 12,
+        number: 0,
+        first: true,
+        numberOfElements: 0,
+        empty: true,
     });
 
-},[]);
+
+    useEffect(() => {
+
+        axios.get(`${BASE_URL}/games?size=12&page=${pageNumber}&sort=title`).then(response => {
+            const data = response.data as GamePage;
+            setPage(data);
+
+        });
+
+    }, [pageNumber]);
 
     return (
         <>
-        <p>{pageNumber}</p>
+
             <Pagination />
 
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-                        <GameCard />
-                    </div>
-                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-                        <GameCard />
-                    </div>
-                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-                        <GameCard />
-                    </div>
-                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-                        <GameCard />
-                    </div>
-                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
-                        <GameCard />
-                    </div>
+                    {page.content.map(game => (
+                        <div key={game.id} className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                            <GameCard game={game} />
+                        </div>
+                    )
+                    )}
                 </div>
             </div>
         </>
