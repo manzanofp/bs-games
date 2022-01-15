@@ -1,13 +1,13 @@
 import axios from "axios";
 import GameCard from "components/GameCard";
-import Pagination from "components/Navbar/Pagination";
+import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { GamePage } from "types/game";
 import { BASE_URL } from "utils/request";
 
 function Listing() {
 
-    const [pageNumber] = useState(0);
+    const [pageNumber,setPageNumber] = useState(0);
 
     const [page, setPage] = useState<GamePage>({
         content: [],
@@ -32,10 +32,16 @@ function Listing() {
 
     }, [pageNumber]);
 
+const handlePageChange = (newPageNumber : number) =>{
+    setPageNumber(newPageNumber);
+}
+
+
+
     return (
         <>
 
-            <Pagination />
+            <Pagination page={page} onChange={handlePageChange}/>
 
             <div className="container">
                 <div className="row">
